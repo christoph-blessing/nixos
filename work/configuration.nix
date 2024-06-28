@@ -211,10 +211,10 @@
   services.udev.extraRules = ''
     ACTION=="add",\
       ENV{SUBSYSTEM}=="bluetooth",\
-      RUN+="${pkgs.bash}/bin/bash -c 'export DISPLAY=:0 XAUTHORITY=/home/chris/.Xauthority; ${pkgs.bluez}/bin/bluetoothctl devices Connected | ${pkgs.gnugrep}/bin/grep urchin && ${pkgs.xorg.xinput}/bin/xinput disable \"AT Translated Set 2 keyboard\"'"
+      RUN+="${pkgs.callPackage ./configureKeyboard.nix { }}"
     ACTION=="remove",\
       ENV{SUBSYSTEM}=="bluetooth",\
-      RUN+="${pkgs.bash}/bin/bash -c 'export DISPLAY=:0 XAUTHORITY=/home/chris/.Xauthority; ${pkgs.bluez}/bin/bluetoothctl devices Connected | ${pkgs.gnugrep}/bin/grep urchin || ${pkgs.xorg.xinput}/bin/xinput enable \"AT Translated Set 2 keyboard\"'"
+      RUN+="${pkgs.callPackage ./configureKeyboard.nix { }}"
     ACTION=="add",\
       ENV{SUBSYSTEM}=="drm",\
       RUN+="${pkgs.autorandr}/bin/autorandr --batch --change"
