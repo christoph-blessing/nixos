@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [ ./nushell ];
@@ -7,9 +7,12 @@
   home.homeDirectory = "/home/chris";
 
   home.keyboard = {
-    layout = "us";
+    layout = "mine";
     model = "pc105";
-    options = [ "compose:menu" ];
+    options = [
+      "compose:menu"
+      "caps:swapescape"
+    ];
   };
 
   xsession.enable = true;

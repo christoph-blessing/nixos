@@ -2,12 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   sops = {
@@ -43,6 +38,13 @@
   services.xserver = {
     enable = true;
     windowManager.bspwm.enable = true;
+    xkb.extraLayouts = {
+      mine = {
+        description = "My custom xkb layout.";
+        languages = [ "eng" ];
+        symbolsFile = ./xkb/mine;
+      };
+    };
   };
 
   services.displayManager.autoLogin = {
